@@ -1,0 +1,610 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+:root {
+    --primary: #2c5530;
+    --secondary: #4a7c59;
+    --accent: #8fbc8f;
+    --light: #f8f9fa;
+    --dark: #2d3748;
+    --white: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: var(--shadow);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo i {
+    font-size: 2rem;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.logo span {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+nav {
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+nav a:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* Main */
+main {
+    padding: 2rem 0;
+}
+
+.section {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.section h2 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.section p {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--dark);
+    opacity: 0.8;
+}
+
+/* Árbol Genealógico */
+.tree-container {
+    overflow-x: auto;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 600px;
+    position: relative;
+}
+
+.generation {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.generation::before {
+    content: '';
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: #ddd;
+}
+
+.generation-0::before {
+    display: none;
+}
+
+.person {
+    background: var(--white);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 140px;
+    position: relative;
+}
+
+.person:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+    border-color: var(--secondary);
+}
+
+.person-you {
+    background: var(--accent);
+    border-color: var(--secondary);
+}
+
+.person-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.person i {
+    font-size: 1.5rem;
+    color: var(--secondary);
+}
+
+.person-you i {
+    color: var(--primary);
+}
+
+.person span {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Badges de nacionalidades en el árbol */
+.nationality-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    justify-content: center;
+    margin-top: 0.5rem;
+    min-height: 20px;
+}
+
+.nationality-badge {
+    background: var(--secondary);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nationality-badge span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Controles */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--secondary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: var(--primary);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.btn-secondary:hover {
+    background: var(--secondary);
+    color: white;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Información de análisis */
+.analysis-info {
+    background: #e8f4fd;
+    border: 1px solid #b3d9ff;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.analysis-info i {
+    color: #1a73e8;
+    margin-right: 0.5rem;
+}
+
+/* Resultados */
+.results-container {
+    margin-top: 2rem;
+}
+
+.nationality-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.nationality-card {
+    background: #f0f7f0;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all 0.3s;
+    border-left: 4px solid #38a169;
+}
+
+.nationality-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.nationality-card h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.availability-status {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.available {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.requirements-list {
+    margin: 1rem 0;
+}
+
+.requirement-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.requirement-status.fulfilled i {
+    color: #38a169;
+}
+
+.requirement-status.pending i {
+    color: #d69e2e;
+}
+
+.next-steps {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.placeholder {
+    text-align: center;
+    color: var(--dark);
+    opacity: 0.6;
+    font-style: italic;
+    padding: 2rem;
+    grid-column: 1 / -1;
+}
+
+/* Import/Export */
+.import-export {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.export-section, .import-section {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.export-section h3, .import-section h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.export-section p, .import-section p {
+    text-align: left;
+    margin-bottom: 1rem;
+    color: var(--dark);
+    opacity: 0.8;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: monospace;
+    margin-bottom: 1rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--white);
+    margin: 5% auto;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h3 {
+    color: var(--primary);
+}
+
+.close {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+}
+
+.close:hover {
+    color: var(--dark);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--secondary);
+}
+
+.nationalities-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.selected-nationalities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-height: 50px;
+    padding: 0.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.nationality-tag {
+    background: var(--accent);
+    color: var(--primary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nationality-tag i {
+    cursor: pointer;
+    font-size: 0.7rem;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.nationality-tag i:hover {
+    opacity: 1;
+}
+
+.nationality-selector-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Notificaciones */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--secondary);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.3s;
+    z-index: 1001;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.notification.success { background: #38a169; }
+.notification.error { background: #e53e3e; }
+.notification.info { background: var(--secondary); }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    nav {
+        gap: 1rem;
+    }
+    
+    .import-export {
+        grid-template-columns: 1fr;
+    }
+    
+    .generation {
+        gap: 1rem;
+    }
+    
+    .person {
+        min-width: 120px;
+        padding: 0.8rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+    
+    .nationality-results {
+        grid-template-columns: 1fr;
+    }
+    
+    .tree {
+        min-width: 400px;
+    }
+}
+
+@media (max-width: 576px) {
+    .generation {
+        flex-wrap: wrap;
+    }
+    
+    .person {
+        min-width: 100px;
+    }
+    
+    .nationality-badge {
+        font-size: 0.6rem;
+        padding: 1px 4px;
+        max-width: 50px;
+    }
+}
